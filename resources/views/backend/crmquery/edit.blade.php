@@ -50,7 +50,7 @@
         <div class="form-group">        
         	<label for="nombre">CRM Server</label>
         	<select name="ID_CRM_Server" class="form-control">   
-             <option value="" disabled selected>Seleccione una opci&oacute;n</option>          	
+             <option value="" selected>Seleccione una opci&oacute;n</option>          	
              @foreach ($servers as $server)
                 @if ($server->id == $crm->ID_CRM_Server) 
                 <option value="{{$server->id}}" selected>{{$server->name}}</option>

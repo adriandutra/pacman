@@ -178,5 +178,6 @@ Route::group([
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'HomeController@index')->name('home');
 Route::get('/{slug?}', 'HomeController@index')->name('home');
 

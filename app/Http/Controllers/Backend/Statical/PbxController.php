@@ -72,7 +72,7 @@ class PbxController extends Controller
         $pbx->DB_connection = $request->get('DB_connection');
         $pbx->Type          = $request->get('Type');
         $pbx->depend_pbx_id = $request->get('depend_pbx_id');
-        $pbx->ID_CRM_Server = $request->get('ID_CRM_Server');
+        $pbx->ID_CRM_Server = (stlen($request->get('ID_CRM_Server')) >0)? $request->get('ID_CRM_Server') : 0;
         $pbx->update();
         
         return Redirect::to('pbx/list');

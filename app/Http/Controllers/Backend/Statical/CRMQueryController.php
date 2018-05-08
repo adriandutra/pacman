@@ -104,7 +104,7 @@ class CRMQueryController extends Controller
         $crm->IDCRM_Neotel            = $request->get('IDCRM_Neotel');
         $crm->Date                    = $request->get('Date');
         $crm->Action                  = $request->get('Action');
-        $crm->ID_CRM_Server           = $request->get('ID_CRM_Server');
+        $crm->ID_CRM_Server           = (strlen($request->get('ID_CRM_Server')) > 0) ? $request->get('ID_CRM_Server'): 0;
         $crm->Field_Document          = $request->get('Field_Document');
        
         $crm->update();
