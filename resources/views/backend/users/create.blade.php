@@ -63,7 +63,7 @@
         
         <div class="form-group" style="float: right;">
             <button class="btn btn-primary" type="submit">Guardar</button>
-            <a href="{{url('users/list')}}"><button class="btn btn-danger">Cancelar</button></a>
+            <a href="{{url('users/list')}}"><button class="btn btn-danger" type="button">Cancelar</button></a>
         </div>
         
         {!!Form::close()!!}
