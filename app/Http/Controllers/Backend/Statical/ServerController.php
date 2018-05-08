@@ -44,7 +44,6 @@ class ServerController extends Controller
         $server->Island_Number = $request->get('Island_Number');
         $server->URI           = $request->get('URI');
         $server->DB_connection = $request->get('DB_connection');
-        $server->Active        = is_null($request->get('Active')) ?  0 : $request->get('Active');
         $server->save();
         
         return Redirect::to('servers/list');
@@ -57,7 +56,7 @@ class ServerController extends Controller
         $server->Island_Number = $request->get('Island_Number');
         $server->URI           = $request->get('URI');
         $server->DB_connection = $request->get('DB_connection');
-        $server->Active        = $request->get('Active');
+        $server->Active        = 1;
         $server->update();
         
         return Redirect::to('servers/list');

@@ -45,11 +45,8 @@
         <div class="form-group">
         	<label for="nombre">Conexi&oacute;n de Base de Datos</label>
         	<input type="text" name="DB_connection" class="form-control" value="{{$server->DB_connection}}">
-        </div>
-        
-        <div class="form-group">        
-        	<label for="nombre">Activar&nbsp;&nbsp;<input type="checkbox" name="Active" id="active" value="{{$server->Active}}" CHECKED></label>
-        </div>
+        </div>        
+
         <div class="form-group" style="float: right;">
             <input type="hidden" name="ID_CRM_Server" class="form-control" value="{{$server->ID_CRM_Server}}">
         </div>

@@ -47,10 +47,6 @@
         	<input type="text" name="DB_connection" class="form-control" placeholder="Conexion...">
         </div>
         
-        <div class="form-group">
-        	<label for="nombre">Activar&nbsp;&nbsp;<input type="checkbox" name="Active" id="active" value="1"></label>
-        </div>
-        
         <div class="form-group" style="float: right;">
             <button class="btn btn-primary" type="submit">Guardar</button>
             <button class="btn btn-danger" type="reset">Cancelar</button>
