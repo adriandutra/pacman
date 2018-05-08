@@ -71,7 +71,7 @@
         <div class="form-group">
              <label for="nombre">Dependencia</label> 
              <select name="depend_pbx_id" class="form-control">
-             	<option value="" disabled selected>Seleccione una opci&oacute;n</option>
+             	<option value="" selected>Seleccione una opci&oacute;n</option>
              @foreach ($pbx as $p)
                 <option value="{{$p->id}}">{{$p->name}}</option>
              @endforeach
@@ -81,7 +81,7 @@
         <div class="form-group">
              <label for="nombre">Servidor CRM</label> 
              <select name="ID_CRM_Server" class="form-control">
-             	<option value="" disabled selected>Seleccione una opci&oacute;n</option>
+             	<option value="" selected>Seleccione una opci&oacute;n</option>
              @foreach ($servers as $server)
                 <option value="{{$server->id}}">{{$server->name}}</option>
              @endforeach

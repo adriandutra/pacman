@@ -53,8 +53,8 @@ class PbxController extends Controller
         $pbx->FileName      = $request->get('FileName');
         $pbx->DB_connection = $request->get('DB_connection');
         $pbx->Type          = $request->get('Type');
-        $pbx->depend_pbx_id = $request->get('depend_pbx_id');
-        $pbx->ID_CRM_Server = $request->get('ID_CRM_Server');
+        $pbx->depend_pbx_id = (stlen($request->get('depend_pbx_id')) >0)? $request->get('depend_pbx_id') : 0;
+        $pbx->ID_CRM_Server = (stlen($request->get('ID_CRM_Server')) >0)? $request->get('ID_CRM_Server') : 0;
         $pbx->Active = '1';
         $pbx->save();
         
@@ -71,7 +71,7 @@ class PbxController extends Controller
         $pbx->FileName      = $request->get('FileName');
         $pbx->DB_connection = $request->get('DB_connection');
         $pbx->Type          = $request->get('Type');
-        $pbx->depend_pbx_id = $request->get('depend_pbx_id');
+        $pbx->depend_pbx_id = (stlen($request->get('depend_pbx_id')) >0)? $request->get('depend_pbx_id') : 0;
         $pbx->ID_CRM_Server = (stlen($request->get('ID_CRM_Server')) >0)? $request->get('ID_CRM_Server') : 0;
         $pbx->update();
         

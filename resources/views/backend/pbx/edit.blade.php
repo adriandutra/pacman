@@ -60,7 +60,7 @@
         <div class="form-group">
         	 <label for="nombre">Tipo</label>
         	 <select name="Type" class="form-control">
-        	    <option value="" disabled>Seleccione una opci&oacute;n</option>
+        	    <option value="" disabled selected>Seleccione una opci&oacute;n</option>
         	    <option value="{{$pbxdata->pbx_id}}" selected>{{$pbxdata->Name}}</option>
   				<option value="0">GATEWAY</option>
   			    <option value="1">PBX</option>
@@ -72,7 +72,7 @@
         <div class="form-group">
              <label for="nombre">Dependencia</label> 
              <select name="depend_pbx_id" class="form-control">   
-             <option value="" disabled selected>Seleccione una opci&oacute;n</option>          	
+             <option value="" selected>Seleccione una opci&oacute;n</option>          	
              @foreach ($pbx as $p)
                 @if ($p->id == $pbxdata->depend_pbx_id) 
                 <option value="{{$p->id}}" selected>{{$p->name}}</option>
@@ -86,7 +86,7 @@
         <div class="form-group">
              <label for="nombre">Servidor CRM</label> 
              <select name="ID_CRM_Server" class="form-control">
-             	<option value="" disabled selected>Seleccione una opci&oacute;n</option>
+             	<option value="" selected>Seleccione una opci&oacute;n</option>
              @foreach ($servers as $server)
                 @if ($server->id == $pbxdata->ID_CRM_Server)
                 <option value="{{$server->id}}" selected>{{$server->name}}</option>
