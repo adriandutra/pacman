@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\CssSelector\Exception\InternalErrorException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,15 +45,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        
-        if ($exception->getStatusCode() == 500) {
-            return response()->view('errors.500', [], 500);
-        }
-        
-        if ($exception->getStatusCode() == 404) {
-            return response()->view('errors.404', [], 404);
-        }
-        
+
         return parent::render($request, $exception);
     }
 
