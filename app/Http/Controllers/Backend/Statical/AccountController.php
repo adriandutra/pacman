@@ -11,6 +11,12 @@ use DB;
 
 class AccountController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function getList()
     {
         $account = Account::getServerActiveId();

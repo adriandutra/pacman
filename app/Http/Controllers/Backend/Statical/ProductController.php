@@ -11,6 +11,12 @@ use DB;
 
 class ProductController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function getList()
     {
         $product = Product::getServerActiveId();

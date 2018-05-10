@@ -8,8 +8,15 @@ use App\Http\Controllers\Controller;
 use App\Models\CRMQuery;
 use App\Http\Requests\Backend\CRMQueryFormRequest;
 use DB;
+
 class CRMQueryController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function getList()
     {
         $crmquery = CRMQuery::getServerActiveId();
