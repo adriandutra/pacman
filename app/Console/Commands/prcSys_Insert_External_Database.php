@@ -1,17 +1,33 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Console\Commands;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
+use Log;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Illuminate\Console\Command;
+use DB; //For transactions
+use Event;
+use GeoIP;
+use SegmentIO\Client;
 
-class prcSys_Insert_External_Database implements ShouldQueue
+class prcSys_Insert_External_Database extends Command
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'job:prcSys_Insert_External_Database';
+    
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Actualizacion de External Database';
+    
     /**
      * Create a new job instance.
      *
@@ -19,9 +35,9 @@ class prcSys_Insert_External_Database implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        parent::__construct();
     }
-
+    
     /**
      * Execute the job.
      *
@@ -29,6 +45,12 @@ class prcSys_Insert_External_Database implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $log = new Logger('prcSys_Insert_External_DatabaseLogs');
+        $log->pushHandler(new StreamHandler('storage/logs/.log', Logger::INFO));
+        
+        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_External_Database');
+        
+        $log->addInfo("Cron prcSys_Insert_External_Database Executed");
+        $this->info('Cron prcSys_Insert_External_Database execute correctly');
     }
 }

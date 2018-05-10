@@ -1,17 +1,33 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Console\Commands;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
+use Log;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Illuminate\Console\Command;
+use DB; //For transactions
+use Event;
+use GeoIP;
+use SegmentIO\Client;
 
-class prcSys_Insert_Logins implements ShouldQueue
+class prcSys_Insert_Logins extends Command
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'job:prcSys_Insert_Logins';
+    
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Insercion de Logins';
+    
     /**
      * Create a new job instance.
      *
@@ -19,9 +35,9 @@ class prcSys_Insert_Logins implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        parent::__construct();
     }
-
+    
     /**
      * Execute the job.
      *
@@ -29,6 +45,13 @@ class prcSys_Insert_Logins implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $log = new Logger('prcSys_Insert_LoginsLogs');
+        $log->pushHandler(new StreamHandler('storage/logs/.log', Logger::INFO));
+        
+        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Logins');
+        
+        $log->addInfo("Cron prcSys_Insert_Logins Executed");
+        $this->info('Cron prcSys_Insert_Logins execute correctly');
     }
+    
 }

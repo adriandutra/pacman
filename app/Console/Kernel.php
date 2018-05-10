@@ -14,7 +14,19 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\prcSys_Insert_CRM::class
+        Commands\prcSys_Insert_CRM::class,
+        Commands\prcSys_Insert_Campaign::class,
+        Commands\prcSys_Insert_CRM_Users::class,
+        Commands\prcSys_Insert_Contacts::class,
+        Commands\prcSys_Insert_External_Database::class,
+        Commands\prcSys_Insert_Logins::class,
+        Commands\prcSys_Insert_Call_Logs::class,
+        Commands\prcSys_Insert_Contact_Sale::class,
+        Commands\prcSys_Insert_Contact_History::class,
+        Commands\prcSys_Insert_Contact_Phone::class,
+        Commands\prcSys_Insert_Contact_Address::class,
+        Commands\prcSys_Insert_Contact_MailAddress::class,
+        Commands\prcSys_Insert_Traffic_GW::class
     ];
 
     /**

@@ -11,15 +11,15 @@ use Event;
 use GeoIP;
 use SegmentIO\Client;
 
-class prcSys_Insert_Traffic_GW extends Command
-{ 
-
+class prcSys_Insert_External_Contact extends Command
+{
+    
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'job:prcSys_Insert_Traffic_GW';
+    protected $signature = 'job:prcSys_Insert_External_Contact';
     
     /**
      * The console command description.
@@ -45,12 +45,12 @@ class prcSys_Insert_Traffic_GW extends Command
      */
     public function handle()
     {
-        $log = new Logger('prcSys_Insert_Traffic_GWLogs');
+        $log = new Logger('prcSys_Insert_External_ContactLogs');
         $log->pushHandler(new StreamHandler('storage/logs/.log', Logger::INFO));
         
-        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Traffic_GW');
+        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_External_Contact');
         
-        $log->addInfo("Cron prcSys_Insert_Traffic_GW Executed");
-        $this->info('Cron prcSys_Insert_Traffic_GW execute correctly');
+        $log->addInfo("Cron prcSys_Insert_External_Contact Executed");
+        $this->info('Cron prcSys_Insert_External_Contact execute correctly');
     }
 }
