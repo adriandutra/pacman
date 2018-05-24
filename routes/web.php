@@ -147,17 +147,17 @@ Route::group([
 Route::group([
     'prefix' => 'servers',
     'middleware' => [
-        'auth'
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\ServerController@getList');
     Route::get('/list', 'Backend\Statical\ServerController@getList');
-    Route::get('/create', 'Backend\Statical\ServerController@getCreate')->middleware('auth', 'role:admin');
-    Route::get('/edit/{ID}', 'Backend\Statical\ServerController@getEdit')->middleware('auth', 'role:admin');
-    Route::get('/delete', 'Backend\Statical\ServerController@getDelete')->middleware('auth', 'role:admin');
-    Route::post('/store', 'Backend\Statical\ServerController@postStore')->middleware('auth', 'role:admin');
-    Route::any('/update', 'Backend\Statical\ServerController@postUpdate')->middleware('auth', 'role:admin');
-    Route::post('/destroy/{ID}', 'Backend\Statical\ServerController@postDestroy')->middleware('auth', 'role:admin');
+    Route::get('/create', 'Backend\Statical\ServerController@getCreate');
+    Route::get('/edit/{ID}', 'Backend\Statical\ServerController@getEdit');
+    Route::get('/delete', 'Backend\Statical\ServerController@getDelete');
+    Route::post('/store', 'Backend\Statical\ServerController@postStore');
+    Route::any('/update', 'Backend\Statical\ServerController@postUpdate');
+    Route::post('/destroy/{ID}', 'Backend\Statical\ServerController@postDestroy');
     
 });
 

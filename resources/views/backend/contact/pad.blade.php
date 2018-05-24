@@ -84,10 +84,7 @@
 
 var url = "{{url('api/v1/contact') }}";
 
-var locationInfo=[];
-var locationData=[];
-var marcadores=[];
-var mapa, pointarray, heatmap;
+
 
 
     $("#year").on('change', function() {
@@ -140,10 +137,17 @@ var mapa, pointarray, heatmap;
 
     $("#make").on('click', function() {
 
+        
+    	var locationInfo=[];
+    	var locationData=[];
+    	var marcadores=[];
+    	var mapa, pointarray, heatmap;
+
     	var TypeMap  =  $("#type").val();
     	var anio     =  $("#year").val();
     	var mes      =  $("#month").val();
     	var campaign =  $("#campaign").val();
+
     	
         
         window.swal({
@@ -194,7 +198,7 @@ var mapa, pointarray, heatmap;
      					    position: new google.maps.LatLng(locationInfo[i][1], locationInfo[i][2]),
      					    data: pointArray,
      					    map: mapa,
-     					    opacity: 0.4
+     					    opacity: 0.3
      			         });	
 
   						 marcadores.push(marcador);

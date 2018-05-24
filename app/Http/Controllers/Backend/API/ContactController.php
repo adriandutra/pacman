@@ -25,8 +25,8 @@ class ContactController extends Controller
             $month    = trim($request->input('mes'));
             $campaign = trim($request->input('campaign'));
 
-            $sub      =  DB::table(DB::raw('MapSales as sub'))
-                              ->Select(DB::raw('TOP 100 \'Vendedor: \'+ Vendedor +\' - Cliente:\'+ Cliente as nombre_sede
+            $sub      =  DB::table(DB::raw('MapSale as sub'))
+                              ->Select(DB::raw('TOP 100 \'Vendedor: \'+ Vendedor +\' Cliente: \'+ Cliente as nombre_sede
                                                 , latitude  as latitude
                                                 , longitude as longitude
                                                 , can as can
