@@ -26,6 +26,11 @@ class UserController extends Controller
         return view('backend.users.index', ['users' => $users]);
     }
     
+    public function getError()
+    {        
+        return view('errors.unauthorized');
+    }
+    
     public function getCreate()
     {
 
@@ -65,7 +70,7 @@ class UserController extends Controller
         $user->name            = $request->get('name');
         $user->username        = $request->get('username');
         $user->email           = $request->get('email');
-        $user->password        = encrypt($request->get('password'));       
+        $user->password        = bcrypt($request->get('password'));       
 
         $user->save();
         

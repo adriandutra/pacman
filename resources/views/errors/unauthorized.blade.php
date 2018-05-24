@@ -33,7 +33,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Error 404: P&aacute;gina no encontrada</div>
+                <div class="title">No cuenta con los permisos necesarios.</div>
+                <div><button type="button" class="btn btn-default" onclick="history.back()">Volver</button></div>
             </div>
         </div>
     </body>

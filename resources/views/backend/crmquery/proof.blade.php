@@ -15,7 +15,7 @@
    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
            
         <div class="form-group" id="sql_contact">
-        	<button type="button" class="btn btn-default" type="button" id="execute">
+        	<button type="button" class="btn btn-default"  id="execute">
     		   <span class="fa fa-bolt"></span> Ejecutar
   			</button>
   			<button  class="btn btn-default" type="submit" id="save">

@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', array('before'=>'forcehttp',  function () {
     return view('auth/login');
-});
+}));
+
+Route::get('/login/', array(
+        'before'=>'forcehttps',
+        'uses' => 'UserController@login')
+);
 
 Auth::routes();
 
@@ -23,11 +28,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
     'prefix' => 'api/v1',
     'middleware' => [
-        'auth',
+        'auth'
     ]
 ], function () {
     Route::get('accounts/list', array('uses' => 'Backend\API\AccountController@getList'))->name('account.list');
     Route::get('campaigns/list', array('uses' => 'Backend\API\CampaignController@getList'))->name('campaign.list');
+    Route::any('contact/pad', array('uses' => 'Backend\API\ContactController@postPad'))->name('contact.pad');
+    Route::any('contact/month', array('uses' => 'Backend\API\ContactController@postMonth'))->name('contact.month');
+    Route::any('contact/campaign', array('uses' => 'Backend\API\ContactController@postCampaign'))->name('contact.campaign');
     Route::get('crmquery/list', array('uses' => 'Backend\API\CRMQueryController@getList'))->name('crmquery.list');
     Route::any('crmquery/execute', array('uses' => 'Backend\API\CRMQueryController@postExecute'))->name('crmquery.execute');
     Route::any('crmquery/save', array('uses' => 'Backend\API\CRMQueryController@postSave'))->name('crmquery.save');
@@ -42,7 +50,7 @@ Route::group([
 Route::group([
     'prefix' => 'accounts',
     'middleware' => [
-        'auth'
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\AccountController@getList');
@@ -59,7 +67,7 @@ Route::group([
 Route::group([
     'prefix' => 'campaigns',
     'middleware' => [
-        'auth'
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\CampaignController@getList');
@@ -74,9 +82,19 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'crmquery',
+    'prefix' => 'contact',
     'middleware' => [
         'auth'
+    ]
+], function () {
+    Route::get('/', 'Backend\Statical\ContactController@getPad');    
+    Route::get('/pad', 'Backend\Statical\ContactController@getPad');    
+});
+
+Route::group([
+    'prefix' => 'crmquery',
+    'middleware' => [
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\CRMQueryController@getList');
@@ -95,7 +113,7 @@ Route::group([
 Route::group([
     'prefix' => 'pbx',
     'middleware' => [
-        'auth'
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\PbxController@getList');
@@ -112,7 +130,7 @@ Route::group([
 Route::group([
     'prefix' => 'products',
     'middleware' => [
-        'auth'
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\ProductController@getList');
@@ -134,19 +152,19 @@ Route::group([
 ], function () {
     Route::get('/', 'Backend\Statical\ServerController@getList');
     Route::get('/list', 'Backend\Statical\ServerController@getList');
-    Route::get('/create', 'Backend\Statical\ServerController@getCreate');
-    Route::get('/edit/{ID}', 'Backend\Statical\ServerController@getEdit');
-    Route::get('/delete', 'Backend\Statical\ServerController@getDelete');
-    Route::post('/store', 'Backend\Statical\ServerController@postStore');
-    Route::any('/update', 'Backend\Statical\ServerController@postUpdate');
-    Route::post('/destroy/{ID}', 'Backend\Statical\ServerController@postDestroy');
+    Route::get('/create', 'Backend\Statical\ServerController@getCreate')->middleware('auth', 'role:admin');
+    Route::get('/edit/{ID}', 'Backend\Statical\ServerController@getEdit')->middleware('auth', 'role:admin');
+    Route::get('/delete', 'Backend\Statical\ServerController@getDelete')->middleware('auth', 'role:admin');
+    Route::post('/store', 'Backend\Statical\ServerController@postStore')->middleware('auth', 'role:admin');
+    Route::any('/update', 'Backend\Statical\ServerController@postUpdate')->middleware('auth', 'role:admin');
+    Route::post('/destroy/{ID}', 'Backend\Statical\ServerController@postDestroy')->middleware('auth', 'role:admin');
     
 });
 
 Route::group([
     'prefix' => 'syslog',
     'middleware' => [
-        'auth'
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\SyslogController@getList');
@@ -160,7 +178,7 @@ Route::group([
 Route::group([
     'prefix' => 'users',
     'middleware' => [
-        'auth'
+        'auth', 'role:admin'
     ]
 ], function () {
     Route::get('/', 'Backend\Statical\UserController@getList');
@@ -173,6 +191,13 @@ Route::group([
     
 });
 
+Route::group([
+    'prefix' => 'errors'
+    
+], function () {
+    Route::get('/unauthorized', 'Backend\Statical\UserController@getError');    
+});
+
 
 
 Auth::routes();
@@ -181,3 +206,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'HomeController@index')->name('home');
 Route::get('/{slug?}', 'HomeController@index')->name('home');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

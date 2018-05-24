@@ -12,6 +12,17 @@
             
             <li class="treeview">
               <a href="#">
+                <i class="fa fa-desktop"></i>
+                <span>Contact Center</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">               
+                <li><a href="{{url('contact/pad')}}"><i class="fa fa-circle-o"></i> Consulta de Contacto</a></li>                
+              </ul>
+            </li>
+            
+            <li class="treeview">
+              <a href="#">
                 <i class="fa fa-laptop"></i>
                 <span>Servidores</span>
                 <i class="fa fa-angle-left pull-right"></i>
