@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Statical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\PBX;
 use App\Models\Campaign;
 use App\Models\CRMQuery;
@@ -34,9 +35,10 @@ class CampaignController extends Controller
     {
         
         $pbx = PBX::getPbxNameId();
-        $crm = CRMQuery::getServerActiveNameId();        
+        $crm = CRMQuery::getServerActiveNameId(); 
+        $account = Account::getServerActiveNameId();
 
-        return view('backend.campaigns.edit', ['campaign' => Campaign::findOrFail($id), 'pbx' => $pbx, 'crm' => $crm]);
+        return view('backend.campaigns.edit', ['campaign' => Campaign::findOrFail($id), 'pbx' => $pbx, 'crm' => $crm, 'account' => $account]);
     }
     
     public function getDelete()
@@ -73,6 +75,7 @@ class CampaignController extends Controller
         $campaign->Name              = $request->get('Name');
         $campaign->pbx_id            =  (strlen($request->get('pbx_id')) > 0) ? $query=$request->get('pbx_id') : 0;
         $campaign->ID_CRM            =  (strlen($request->get('ID_CRM')) > 0) ? $request->get('ID_CRM'):NULL;
+        $campaign->acc_id            =  (strlen($request->get('acc_id')) > 0) ? $request->get('ID_CRM'):NULL;
         
         $campaign->update();
         

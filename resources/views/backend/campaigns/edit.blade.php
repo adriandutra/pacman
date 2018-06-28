@@ -60,6 +60,20 @@
             </select>
         </div>
         
+        <div class="form-group">
+        	<label for="nombre">Cuenta</label>
+        	<select name="acc_id" class="form-control">   
+             <option value="" selected>Seleccione una opci&oacute;n</option>
+             @foreach ($account as $cu)
+                @if ($cu->id == $campaign->acc_id) 
+                <option value="{{$c->id}}" selected>{{$cu->name}}</option>
+                @else 
+                <option value="{{$c->id}}">{{$cu->name}}</option>
+                @endif
+             @endforeach            	
+            </select>
+        </div>
+        
         <div class="form-group" style="float: right;">
             <input type="hidden" name="ID_Campaign" class="form-control" value="{{$campaign->ID_Campaign}}">
         </div>
