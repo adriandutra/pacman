@@ -66,9 +66,9 @@
              <option value="" selected>Seleccione una opci&oacute;n</option>
              @foreach ($account as $cu)
                 @if ($cu->id == $campaign->acc_id) 
-                <option value="{{$c->id}}" selected>{{$cu->name}}</option>
+                <option value="{{$cu->id}}" selected>{{$cu->name}}</option>
                 @else 
-                <option value="{{$c->id}}">{{$cu->name}}</option>
+                <option value="{{$cu->id}}">{{$cu->name}}</option>
                 @endif
              @endforeach            	
             </select>
