@@ -75,7 +75,7 @@ class CampaignController extends Controller
         $campaign->Name              = $request->get('Name');
         $campaign->pbx_id            =  (strlen($request->get('pbx_id')) > 0) ? $query=$request->get('pbx_id') : 0;
         $campaign->ID_CRM            =  (strlen($request->get('ID_CRM')) > 0) ? $request->get('ID_CRM'):NULL;
-        $campaign->acc_id            =  (strlen($request->get('acc_id')) > 0) ? $request->get('ID_CRM'):NULL;
+        $campaign->acc_id            =  (strlen($request->get('acc_id')) > 0) ? $request->get('acc_id'):NULL;
         
         $campaign->update();
         
