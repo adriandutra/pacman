@@ -180,7 +180,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Artisaninweb\Enum\EnumServiceProvider::class,
         GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
-        GeneaLabs\Phpgmaps\PhpgmapsServiceProvider::class,
         
 
     ],
@@ -234,7 +233,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'EnumMap' => Artisaninweb\Enum\Facades\EnumFacade::class,
-        'Gmaps' => GeneaLabs\Phpgmaps\Facades\PhpgmapsFacade::class,
 
     ],
 
