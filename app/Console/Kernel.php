@@ -41,16 +41,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
         
         $schedule->command('job:prcSys_Insert_CRM')
-                 ->dailyAt('12:47');
+                 ->dailyAt('04:00');
     }
 
-    /**
-     * Register the Closure based commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
-    {
-        require base_path('routes/console.php');
-    }
 }
