@@ -41,7 +41,13 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
         
         $schedule->command('job:prcSys_Insert_CRM')
-                 ->dailyAt('12:47');
+                 ->dailyAt('04:00');
+        
+        $schedule->command('job:prcSys_Insert_CRM')
+                 ->daily()
+                 ->everyFiveMinutes()
+                 ->between('04:01', '05:00');
+        
     }
 
     /**
