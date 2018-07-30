@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Queue\Jobs\Job;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -39,6 +39,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        
+        $schedule->command('job:prcSys_Insert_CRM')
+                 ->dailyAt('12:47');
     }
 
     /**
