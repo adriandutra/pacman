@@ -45,12 +45,41 @@ class prcSys_Insert_External_Contact extends Command
      */
     public function handle()
     {
-        $log = new Logger('prcSys_Insert_External_ContactLogs');
-        $log->pushHandler(new StreamHandler('storage/logs/.log', Logger::INFO));
+       
+        $flag = DB::table('DailyProcess')
+                    ->where('Name', 'prcSys_Insert_Contacts')
+                    ->where('Sysout', 0)
+                    ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
+                    ->whereRaw('(Select count(*) From DailyProcess Where Name = \'\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
+                    ->first();
         
-        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_External_Contact');
+        if ($flag->id) {
+            
+            $log = new Logger('prcSys_Insert_External_ContactLogs');
+            $log->pushHandler(new StreamHandler('storage/logs/prcSys_Insert_External_Contact.log', Logger::INFO));
+      
+            $StartTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+            
+            $upTable = DB::table('DailyProcess')->Insert(
+                   ['Name'   => 'prcSys_Insert_External_Contact',
+                    'sysout' => 1,
+                    'StartTime'  => $StartTime[0]->Fecha,
+                    'EndTime'    => NULL
+                ]
+             );
+            
+            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_External_Contact');
         
-        $log->addInfo("Cron prcSys_Insert_External_Contact Executed");
-        $this->info('Cron prcSys_Insert_External_Contact execute correctly');
+            $log->addInfo("Cron prcSys_Insert_External_Contact Executed");
+            $this->info('Cron prcSys_Insert_External_Contact execute correctly');
+            
+            $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+            
+            $upTable = DB::table('DailyProcess')
+                           ->where('Name', 'prcSys_Insert_External_Contact')
+                           ->where('StartTime', $StartTime[0]->Fecha)
+                           ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+            
+        }
     }
 }

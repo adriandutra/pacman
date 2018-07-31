@@ -44,12 +44,42 @@ class prcSys_Insert_Contacts extends Command
      */
     public function handle()
     {
-        $log = new Logger('prcSys_Insert_ContactsLogs');
-        $log->pushHandler(new StreamHandler('storage/logs/.log', Logger::INFO));
         
-        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Contacts');
+        $flag = DB::table('DailyProcess')
+                    ->where('Name', 'prcSys_Insert_crm_users')
+                    ->where('Sysout', 0)
+                    ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
+                    ->whereRaw('(Select count(*) From DailyProcess Where Name = \'prcSys_Insert_Contacts\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
+                    ->first();
         
-        $log->addInfo("Cron prcSys_Insert_Contacts Executed");
-        $this->info('Cron prcSys_Insert_Contacts execute correctly');
+        if ($flag->id) {
+           
+            $log = new Logger('prcSys_Insert_ContactsLogs');
+            $log->pushHandler(new StreamHandler('storage/logs/prcSys_Insert_Contacts.log', Logger::INFO));
+
+            $StartTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+            
+            $upTable = DB::table('DailyProcess')->Insert(
+                   ['Name'   => 'prcSys_Insert_Contacts',
+                    'sysout' => 1,
+                    'StartTime'  => $StartTime[0]->Fecha,
+                    'EndTime'    => NULL
+                ]
+            );
+            
+            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Contacts');
+        
+            $log->addInfo("Cron prcSys_Insert_Contacts Executed");
+            $this->info('Cron prcSys_Insert_Contacts execute correctly');
+            
+            $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+            
+            $upTable = DB::table('DailyProcess')
+                        ->where('Name', 'prcSys_Insert_Contacts')
+                        ->where('StartTime', $StartTime[0]->Fecha)
+                        ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+        }
     }
+    
+    
 }
