@@ -37,18 +37,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-        
         $schedule->command('job:prcSys_Insert_CRM')
+                 ->timezone('America/Argentina/Buenos_Aires') 
                  ->dailyAt('04:00');
 
-        
-        $schedule->command('job:prcSys_Insert_CRM')
-                 ->daily()
-                 ->everyFiveMinutes()
-                 ->between('04:01', '05:00');
-       
-      }
+        $schedule->command('job:prcSys_Insert_Campaign')
+                 ->timezone('America/Argentina/Buenos_Aires')
+                 ->everyMinute()
+                 ->between('04:01','04:15');
+     }
 
 }
