@@ -50,7 +50,7 @@ class prcSys_Insert_External_Contact extends Command
                     ->where('Name', 'prcSys_Insert_Contacts')
                     ->where('Sysout', 0)
                     ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
-                    ->whereRaw('(Select count(*) From DailyProcess Where Name = \'\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
+                    ->whereRaw('(Select count(*) From DailyProcess Where Name = \'prcSys_Insert_External_Contact\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
                     ->first();
         
         if ($flag->id) {
