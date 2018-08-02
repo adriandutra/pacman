@@ -71,13 +71,7 @@ class prcSys_Insert_Contacts extends Command
         
             $log->addInfo("Cron prcSys_Insert_Contacts Executed");
             $this->info('Cron prcSys_Insert_Contacts execute correctly');
-            
-            $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
-            
-            $upTable = DB::table('DailyProcess')
-                        ->where('Name', 'prcSys_Insert_Contacts')
-                        ->where('StartTime', $StartTime[0]->Fecha)
-                        ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+
         }
     }
     
