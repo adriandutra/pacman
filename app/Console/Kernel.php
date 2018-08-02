@@ -39,25 +39,25 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('job:prcSys_Insert_CRM')
                  ->timezone('America/Argentina/Buenos_Aires') 
-                 ->dailyAt('04:00');
+                 ->dailyAt('08:30');
 
         $schedule->command('job:prcSys_Insert_Campaign')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('04:01','04:05');
+                 ->between('08:31','04:35');
         
         $schedule->command('job:prcSys_Insert_CRM_Users')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('04:05','04:10');
+                 ->between('08:35','08:40');
         
         $schedule->command('job:prcSys_Insert_Contacts')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('04:10','04:40');
+                 ->between('08:40','09:10');
         
         $schedule->command('job:prcSys_Insert_External_Contact')
                  ->withoutOverlapping()
