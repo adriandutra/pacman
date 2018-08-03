@@ -44,29 +44,41 @@ class prcSys_Insert_CRM extends Command
      */
     public function handle()
     {
-        $log = new Logger('prcSys_Insert_CRMLOGS');
-        $log->pushHandler(new StreamHandler('storage/logs/prcSys_Insert_CRM.log', Logger::INFO));
         
-        $StartTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');  
+        $flag = DB::table('DailyProcess')
+                    ->Select(DB::raw('1 as id'))
+                    ->where('Name', 'prcSys_Insert_crm_users')
+                    ->whereRaw('Sysout != 0')
+                    ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')                    
+                    ->first();
         
-        $upTable = DB::table('DailyProcess')->Insert(
-                       ['Name'   => 'prcSys_Insert_CRM',
-                        'sysout' => 1,
-                        'StartTime'  => $StartTime[0]->Fecha,
-                        'EndTime'    => NULL
-                       ] 
-                   );
+        if ($flag->id) {
+         
+            $log = new Logger('prcSys_Insert_CRMLOGS');
+            $log->pushHandler(new StreamHandler('storage/logs/prcSys_Insert_CRM.log', Logger::INFO));
         
-        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Crms');
+            $StartTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');  
         
-        $log->addInfo("Cron prcSys_Insert_CRM Executed");
-        $this->info('Cron prcSys_Insert_CRM execute correctly');
+            $upTable = DB::table('DailyProcess')->Insert(
+                           ['Name'   => 'prcSys_Insert_CRM',
+                            'sysout' => 1,
+                            'StartTime'  => $StartTime[0]->Fecha,
+                            'EndTime'    => NULL
+                            ] 
+                        );
         
-        $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Crms');
         
-        $upTable = DB::table('DailyProcess')
-                     ->where('Name', 'prcSys_Insert_CRM')
-                     ->where('StartTime', $StartTime[0]->Fecha)
-                     ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+            $log->addInfo("Cron prcSys_Insert_CRM Executed");
+            $this->info('Cron prcSys_Insert_CRM execute correctly');
+        
+            $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+        
+            $upTable = DB::table('DailyProcess')
+                         ->where('Name', 'prcSys_Insert_CRM')
+                         ->where('StartTime', $StartTime[0]->Fecha)
+                         ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+            
+        }
     }
 }

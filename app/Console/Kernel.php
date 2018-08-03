@@ -38,9 +38,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('job:prcSys_Insert_CRM')
+                 ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires') 
-                 ->dailyAt('04:00');
-
+                 ->everyMinute()
+                 ->between('04:00','04:05');
+        
         $schedule->command('job:prcSys_Insert_Campaign')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
