@@ -50,7 +50,7 @@ class prcSys_Insert_External_Contact extends Command
         
         $upTable = DB::table('DailyProcess')
                        ->where('Name', 'prcSys_Insert_Contacts')
-                       ->where('StartTime', $StartTime[0]->Fecha)
+                       ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
                        ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
        
         $flag = DB::table('DailyProcess')
@@ -75,10 +75,10 @@ class prcSys_Insert_External_Contact extends Command
                 ]
              );
             
-            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_External_Contact');
+            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Extenal_Contact');
         
-            $log->addInfo("Cron prcSys_Insert_External_Contact Executed");
-            $this->info('Cron prcSys_Insert_External_Contact execute correctly');
+            $log->addInfo("Cron prcSys_Insert_Extenal_Contact Executed");
+            $this->info('Cron prcSys_Insert_Extenal_Contact execute correctly');
             
             $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
             
