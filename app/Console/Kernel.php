@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\prcSys_Insert_Campaign::class,
         Commands\prcSys_Insert_CRM_Users::class,
         Commands\prcSys_Insert_Contacts::class,
+        Commands\prcSys_Insert_External_Contact::class,
         Commands\prcSys_Insert_External_Database::class,
         Commands\prcSys_Insert_Logins::class,
         Commands\prcSys_Insert_Call_Logs::class,
