@@ -48,11 +48,11 @@ class prcSys_Insert_CRM extends Command
         $flag = DB::table('DailyProcess')
                     ->Select(DB::raw('1 as id'))
                     ->where('Name', 'prcSys_Insert_crm_users')
-                    ->whereRaw('Sysout != 0')
+                    ->whereRaw('Sysout = 0')
                     ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')                    
                     ->first();
         
-        if ($flag->id) {
+        if (!$flag->id) {
          
             $log = new Logger('prcSys_Insert_CRMLOGS');
             $log->pushHandler(new StreamHandler('storage/logs/prcSys_Insert_CRM.log', Logger::INFO));
