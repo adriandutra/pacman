@@ -45,14 +45,7 @@ class prcSys_Insert_External_Contact extends Command
      */
     public function handle()
     {
-        
-        $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
-        
-        $upTable = DB::table('DailyProcess')
-                       ->where('Name', 'prcSys_Insert_Contacts')
-                       ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
-                       ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
-       
+
         $flag = DB::table('DailyProcess')
                     ->where('Name', 'prcSys_Insert_Contacts')
                     ->where('Sysout', 0)
