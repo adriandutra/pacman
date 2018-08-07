@@ -63,7 +63,7 @@ class prcSys_Insert_External_Contact extends Command
             $upTable = DB::table('DailyProcess')->Insert(
                    ['Name'   => 'prcSys_Insert_External_Contact',
                     'sysout' => 1,
-                    'StartTime'  => $StartTime[0]->Fecha,
+                    'StartTime'  => $StartTime[0]->Fecha, 
                     'EndTime'    => NULL
                 ]
              );

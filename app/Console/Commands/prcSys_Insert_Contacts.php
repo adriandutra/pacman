@@ -78,7 +78,7 @@ class prcSys_Insert_Contacts extends Command
                         ->where('Name', 'prcSys_Insert_Contacts')
                         ->where('StartTime', $StartTime[0]->Fecha)
                         ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
-
+ 
         }
     }
     

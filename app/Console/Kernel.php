@@ -66,7 +66,7 @@ class Kernel extends ConsoleKernel
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
                  ->between('04:30','05:00');
-/*        
+      
         $schedule->command('job:prcSys_Insert_Logins')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
@@ -83,7 +83,7 @@ class Kernel extends ConsoleKernel
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('05:20','05:40'); */
+                 ->between('05:20','05:40'); 
 
      }
 
