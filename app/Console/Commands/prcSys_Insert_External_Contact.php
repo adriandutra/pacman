@@ -68,18 +68,22 @@ class prcSys_Insert_External_Contact extends Command
                 ]
              );
             
-            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Extenal_Contact');
-        
-            $log->addInfo("Cron prcSys_Insert_Extenal_Contact Executed");
-            $this->info('Cron prcSys_Insert_Extenal_Contact execute correctly');
+            try {
+                    
+                 $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Extenal_Contact');
+                    
+            }catch (\Exception $e) {
             
-            $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+                    $log->addInfo("Cron prcSys_Insert_Extenal_Contact Executed");
+                    $this->info('Cron prcSys_Insert_Extenal_Contact execute correctly');
             
-            $upTable = DB::table('DailyProcess')
-                           ->where('Name', 'prcSys_Insert_External_Contact')
-                           ->where('StartTime', $StartTime[0]->Fecha)
-                           ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+                    $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
             
+                    $upTable = DB::table('DailyProcess')
+                               ->where('Name', 'prcSys_Insert_External_Contact')
+                               ->where('StartTime', $StartTime[0]->Fecha)
+                               ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+            }
         }
     }
 }
