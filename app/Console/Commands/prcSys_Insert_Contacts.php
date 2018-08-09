@@ -63,27 +63,17 @@ class prcSys_Insert_Contacts extends Command
                    ['Name'   => 'prcSys_Insert_Contacts',
                     'sysout' => 1,
                     'StartTime'  => $StartTime[0]->Fecha,
-                    'EndTime'    => NULL
+                    'EndTime'    => $StartTime[0]->Fecha
                 ]
             );
             
-            try {
-                           
-                    $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Contacts');
+                          
+            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Contacts');
             
-            }catch (\Exception $e) {
-        
-                $log->addInfo("Cron prcSys_Insert_Contacts Executed");
-                $this->info('Cron prcSys_Insert_Contacts execute correctly');
+            $log->addInfo("Cron prcSys_Insert_Contacts Executed");
+            $this->info('Cron prcSys_Insert_Contacts execute correctly');
             
-                $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
-            
-                $upTable = DB::table('DailyProcess')
-                            ->where('Name', 'prcSys_Insert_Contacts')
-                            ->where('StartTime', $StartTime[0]->Fecha)
-                            ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
-            }
- 
+
         }
     }
     
