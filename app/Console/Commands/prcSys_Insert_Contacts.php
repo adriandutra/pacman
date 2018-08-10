@@ -61,7 +61,7 @@ class prcSys_Insert_Contacts extends Command
             
             $upTable = DB::table('DailyProcess')->Insert(
                    ['Name'   => 'prcSys_Insert_Contacts',
-                    'sysout' => 1,
+                    'sysout' => 0,
                     'StartTime'  => $StartTime[0]->Fecha,
                     'EndTime'    => $StartTime[0]->Fecha
                 ]
