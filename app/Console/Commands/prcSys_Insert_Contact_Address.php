@@ -45,12 +45,40 @@ class prcSys_Insert_Contact_Address extends Command
      */
     public function handle()
     {
-        $log = new Logger('prcSys_Insert_Contact_AddressLogs');
-        $log->pushHandler(new StreamHandler('storage/logs/.log', Logger::INFO));
         
-        $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Contact_Address');
+        $flag = DB::table('DailyProcess')
+                ->where('Name', 'prcSys_Insert_Contact_History')
+                ->where('Sysout', 0)
+                ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
+                ->whereRaw('(Select count(*) From DailyProcess Where Name = \'prcSys_Insert_Contact_Address\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
+                ->first();
         
-        $log->addInfo("Cron prcSys_Insert_Contact_Address Executed");
-        $this->info('Cron prcSys_Insert_Contact_Address execute correctly');
+        if ($flag->id) {
+            
+                $StartTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+            
+                $upTable = DB::table('DailyProcess')->Insert(
+                                        ['Name'   => 'prcSys_Insert_Contact_Address',
+                                        'sysout' => 1,
+                                        'StartTime'  => $StartTime[0]->Fecha,
+                                        'EndTime'    => NULL
+                                         ]
+                                      );
+        
+                $log = new Logger('prcSys_Insert_Contact_AddressLogs');
+                $log->pushHandler(new StreamHandler('storage/logs/prcSys_Insert_Contact_Address.log', Logger::INFO));
+        
+                $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Contact_Address');
+        
+                $log->addInfo("Cron prcSys_Insert_Contact_Address Executed");
+                $this->info('Cron prcSys_Insert_Contact_Address execute correctly');
+                
+                $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
+                
+                $upTable = DB::table('DailyProcess')
+                            ->where('Name', 'prcSys_Insert_Contact_Address')
+                            ->where('StartTime', $StartTime[0]->Fecha)
+                            ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+        }
     }
 }
