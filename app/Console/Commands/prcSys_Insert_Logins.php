@@ -52,6 +52,7 @@ class prcSys_Insert_Logins extends Command
                     ->whereRaw('(Select count(*) From DailyProcess Where Name = \'prcSys_Insert_Logins\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
                     ->first();
         
+         
         if ($flag->id) {
          
             $log = new Logger('prcSys_Insert_LoginsLogs');
@@ -68,7 +69,7 @@ class prcSys_Insert_Logins extends Command
             );
         
         
-            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Logins');
+            $prcSys = DB::Select('SET NOCOUNT ON exec prcSys_Insert_Loguins');
         
             $log->addInfo("Cron prcSys_Insert_Logins Executed");
             $this->info('Cron prcSys_Insert_Logins execute correctly');
