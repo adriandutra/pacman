@@ -62,9 +62,9 @@ class prcSys_Insert_External_Contact extends Command
             
             $upTable = DB::table('DailyProcess')->Insert(
                    ['Name'   => 'prcSys_Insert_External_Contact',
-                    'sysout' => 1,
+                    'sysout' => 0,
                     'StartTime'  => $StartTime[0]->Fecha, 
-                    'EndTime'    => NULL
+                    'EndTime'    => $StartTime[0]->Fecha
                 ]
              );
             
@@ -73,12 +73,6 @@ class prcSys_Insert_External_Contact extends Command
             $log->addInfo("Cron prcSys_Insert_Extenal_Contact Executed");
             $this->info('Cron prcSys_Insert_Extenal_Contact execute correctly');
             
-            $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
-            
-            $upTable = DB::table('DailyProcess')
-                           ->where('Name', 'prcSys_Insert_External_Contact')
-                           ->where('StartTime', $StartTime[0]->Fecha)
-                           ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
             
         }
     }
