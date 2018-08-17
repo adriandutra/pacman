@@ -62,9 +62,9 @@ class prcSys_Insert_Contact_Phone extends Command
             
                 $upTable = DB::table('DailyProcess')->Insert(
                                 ['Name'   => 'prcSys_Insert_Contact_Phone',
-                                'sysout' => 1,
+                                'sysout' => 0,
                                 'StartTime'  => $StartTime[0]->Fecha,
-                                'EndTime'    => NULL
+                                'EndTime'    => $StartTime[0]->Fecha
                                 ]
                             );
 
@@ -73,13 +73,7 @@ class prcSys_Insert_Contact_Phone extends Command
         
                 $log->addInfo("Cron prcSys_Insert_Contact_Phone Executed");
                 $this->info('Cron prcSys_Insert_Contact_Phone execute correctly');
-                
-                $EndTime = DB::Select('SELECT CONVERT(datetime,  GETDATE()) as Fecha');
-                
-                $upTable = DB::table('DailyProcess')
-                            ->where('Name', 'prcSys_Insert_Contact_Phone')
-                            ->where('StartTime', $StartTime[0]->Fecha)
-                            ->update(['Sysout' => 0, 'EndTime' => $EndTime[0]->Fecha]);
+
                 
         }
     }
