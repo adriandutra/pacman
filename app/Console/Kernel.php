@@ -41,78 +41,78 @@ class Kernel extends ConsoleKernel
         $schedule->command('job:prcSys_Insert_CRM')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires') 
-                 ->dailyAt('04:00');
+                 ->dailyAt('01:00');
         
         $schedule->command('job:prcSys_Insert_Campaign')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('04:00','04:05');
+                 ->between('01:00','01:05');
         
         $schedule->command('job:prcSys_Insert_CRM_Users')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('04:05','04:10');
+                 ->between('01:05','01:10');
         
         $schedule->command('job:prcSys_Insert_Contacts')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('04:10','04:30');
+                 ->between('01:10','01:30');
         
         $schedule->command('job:prcSys_Insert_External_Contact')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('04:30','05:00');
+                 ->between('01:30','02:00');
       
         $schedule->command('job:prcSys_Insert_Logins')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('05:00','05:10');
+                 ->between('02:00','02:10');
 
         $schedule->command('job:prcSys_Insert_Call_Logs')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('05:10','05:30');
+                 ->between('02:10','02:30');
         
         
         $schedule->command('job:prcSys_Insert_Contact_Sale')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('05:30','05:50');
+                 ->between('02:30','02:50');
         
         
         $schedule->command('job:prcSys_Insert_Contact_History')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('05:50','06:10');
+                 ->between('02:50','03:10');
       
                  
         $schedule->command('job:prcSys_Insert_Contact_Address')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('06:10','06:20');
+                 ->between('02:30','02:50');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_MailAddress')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('06:30','06:50');
+                 ->between('02:50','03:10');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_Phone')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('06:50','07:10'); 
+                 ->between('03:10','03:30'); 
 
      }
 
