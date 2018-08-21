@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
-use App\Models\PBX;
+use App\Models\Pbx;
 use App\Models\Campaign;
 use App\Models\CRMQuery;
 use App\Http\Requests\Backend\CampaignFormRequest;

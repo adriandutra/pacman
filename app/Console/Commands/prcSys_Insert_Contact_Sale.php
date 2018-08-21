@@ -47,7 +47,7 @@ class prcSys_Insert_Contact_Sale extends Command
     {
         
         $flag = DB::table('DailyProcess')
-                    ->where('Name', 'prcSys_Insert_Call_Log')
+                    ->where('Name', 'prcSys_Insert_Call_Logs')
                     ->where('Sysout', 0)
                     ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
                     ->whereRaw('(Select count(*) From DailyProcess Where Name = \'prcSys_Insert_Contact_Sale\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
