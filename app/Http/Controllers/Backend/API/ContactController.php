@@ -19,35 +19,30 @@ class ContactController extends Controller
 
     public function postPad(Request $request)
     {
-        try {
-            
-            $year     = trim($request->input('anio'));
-            $month    = trim($request->input('mes'));
-            $campaign = trim($request->input('campaign'));
+      try {
+          
 
-            $sub      =  DB::table(DB::raw('MapSale as sub'))
-                              ->Select(DB::raw('TOP 100 \'Vendedor: \'+ Vendedor +\' Cliente: \'+ Cliente as nombre_sede
-                                                , latitude  as latitude
-                                                , longitude as longitude
-                                                , can as can
-                                                , snn as snn
-                                                , id_crm as id_crm'))
-                              ->whereNotNull('latitude')
-                              ->where('year', $year)
-                              ->where('month', $month)
-                              ->where('id_crm', $campaign);
-            
-            $padQuery =  DB::table(DB::raw("({$sub->toSql()}) as sub"))
-                              ->mergeBindings($sub)
-                              ->whereRaw('sub.CAN = sub.SNN')
-                              ->get();
+            $sub  =  DB::table(DB::raw('Normal_Contact_Address as sub'))
+                         ->Select(DB::raw(' TOP 10000 sub.oldaddress as direccion
+                                           , sub.street as calle
+                                           , sub.number as numero
+                                           , sub.piso as piso
+                                           , sub.depto as depto
+                                           , sub.postalcode as postal
+                                           , sub.location as localidad
+                                           , sub.city as partido
+                                           , sub.state as provincia
+                                           , sub.country as pais
+                                           , sub.id as id'))
+                         ->where('mark', 0)                                           
+                         ->get();
            
                               
                               
             $r = new ModelResponse();
             $r->success = true;
             $r->message = 'Pad List';
-            $r->data = $padQuery;
+            $r->data = $sub;
             return $r->doResponse();
             
         } catch(\Exception $e){
@@ -58,24 +53,31 @@ class ContactController extends Controller
         }
     }
     
-    public function postMonth(Request $request)
+    
+    public function postApply(Request $request)
     {
         try {
-               $year = trim($request->input('anio'));
-                 
-               $month = DB::table('Contact_History')
-                         ->select(DB::raw('month(DateTime) as mes'))
-                         ->where(DB::raw('year(DateTime)'), $year)
-                         ->groupBy(DB::raw('month(DateTime)'))
-                         ->OrderBy(DB::raw('month(DateTime)'))
-                         ->get();    
-     
-                $r = new ModelResponse();
-                $r->success = true;
-                $r->message = 'Send Month';
-                $r->data = $month;
-                return $r->doResponse();
             
+            
+               $ArrStreet = $request->input('checked');                                 
+
+               foreach ($ArrStreet as $a)
+               {                   
+                   
+                   $query = DB::table(DB::raw('Normal_Contact_Address'))
+                                ->where(['id' => $a])
+                                ->update(['mark' => 1]);
+                                
+                                    
+               }
+               
+               $r = new ModelResponse();
+               $r->success = true;
+               $r->message = 'Apply Update';
+               $r->data = $query;
+               return $r->doResponse();
+                                           
+                                                        
         } catch(\Exception $e){
             $r = new ApiResponse();
             $r->success = false;
@@ -83,30 +85,31 @@ class ContactController extends Controller
             return $r->doResponse();
         }
     }
+
     
-    public function postCampaign(Request $request)
+    public function postDiscard(Request $request)
     {
         try {
             
-            $year  = trim($request->input('anio'));
-            $month = trim($request->input('mes'));
             
+            $ArrStreet = $request->input('checked');
             
-            $campaign= DB::table(DB::raw('Contact_History as cs'))
-                            ->select(DB::raw('cs.id_crm, cr.name'))
-                            ->join('CRM as cr', 'cr.id_crm','=','cs.id_crm')
-                            ->where(DB::raw('year(cs.DateTime)'), $year)
-                            ->where(DB::raw('month(cs.DateTime)'), $month)
-                            ->where('idventa','<>', 0)
-                            ->groupBy(DB::raw('cs.id_crm, cr.name'))
-                            ->OrderBy(DB::raw('cr.name'))
-                            ->get();
+            foreach ($ArrStreet as $a)
+            {
+                
+                $query = DB::table(DB::raw('Normal_Contact_Address'))
+                ->where(['id' => $a])
+                ->update(['mark' => 2]);
+                
+                
+            }
             
             $r = new ModelResponse();
             $r->success = true;
-            $r->message = 'Send Campaign';
-            $r->data = $campaign;
+            $r->message = 'Discard Update';
+            $r->data = $query;
             return $r->doResponse();
+            
             
         } catch(\Exception $e){
             $r = new ApiResponse();
@@ -115,4 +118,6 @@ class ContactController extends Controller
             return $r->doResponse();
         }
     }
+   
+
 }

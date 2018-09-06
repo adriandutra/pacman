@@ -34,8 +34,8 @@ Route::group([
     Route::get('accounts/list', array('uses' => 'Backend\API\AccountController@getList'))->name('account.list');
     Route::get('campaigns/list', array('uses' => 'Backend\API\CampaignController@getList'))->name('campaign.list');
     Route::any('contact/pad', array('uses' => 'Backend\API\ContactController@postPad'))->name('contact.pad');
-    Route::any('contact/month', array('uses' => 'Backend\API\ContactController@postMonth'))->name('contact.month');
-    Route::any('contact/campaign', array('uses' => 'Backend\API\ContactController@postCampaign'))->name('contact.campaign');
+    Route::any('contact/apply', array('uses' => 'Backend\API\ContactController@postApply'))->name('contact.apply');
+    Route::any('contact/discard', array('uses' => 'Backend\API\ContactController@postDiscard'))->name('contact.discard');
     Route::get('crmquery/list', array('uses' => 'Backend\API\CRMQueryController@getList'))->name('crmquery.list');
     Route::any('crmquery/execute', array('uses' => 'Backend\API\CRMQueryController@postExecute'))->name('crmquery.execute');
     Route::any('crmquery/save', array('uses' => 'Backend\API\CRMQueryController@postSave'))->name('crmquery.save');

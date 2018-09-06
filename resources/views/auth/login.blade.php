@@ -22,6 +22,7 @@
                                         <strong>{{ $errors->first('login') }}</strong>
                                     </span>
                                 @endif
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             </div>
                         </div>
 

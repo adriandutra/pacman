@@ -89,7 +89,7 @@ class UserController extends Controller
         $user->name            = $request->get('name');
         $user->username        = $request->get('username');
         $user->email           = $request->get('email');       
-
+        $user->password        = bcrypt($request->get('password'));
 
         $user->roles()->sync([$role_id]);
         $user->update();

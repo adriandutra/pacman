@@ -15,6 +15,8 @@
     
     <script src="{{ asset('js/dataTables.buttons.min.js')}}"></script>
     
+    <script src="{{ asset('js/buttons.html5.min.js')}}"></script>
+    
     <script src="{{ asset('js/dataTables.select.min.js')}}"></script>
     
     <script src="{{ asset('js/dataTables.responsive.min.js')}}"></script>
