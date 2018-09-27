@@ -192,6 +192,13 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'report'
+], function () {
+    Route::get('/', 'Frontend\Statical\ReportController@getList');
+    Route::get('/index', 'Frontend\Statical\ReportController@getList');
+});
+
+Route::group([
     'prefix' => 'errors'
     
 ], function () {
@@ -204,7 +211,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'HomeController@index')->name('home');
-Route::get('/{slug?}', 'HomeController@index')->name('home');
+//Route::get('/{slug?}', 'HomeController@index')->name('home');
 
 
 Auth::routes();

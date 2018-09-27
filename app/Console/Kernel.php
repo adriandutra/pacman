@@ -38,6 +38,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        /*
         $schedule->command('job:prcSys_Insert_CRM')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires') 
@@ -61,17 +62,18 @@ class Kernel extends ConsoleKernel
                  ->everyTenMinutes()
                  ->between('01:10','01:30');
         
-        $schedule->command('job:prcSys_Insert_External_Contact')
-                 ->withoutOverlapping()
-                 ->timezone('America/Argentina/Buenos_Aires')
-                 ->everyTenMinutes()
-                 ->between('01:30','02:00');
-        
         $schedule->command('job:prcSys_Insert_External_Database')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
                  ->between('01:30','02:00');
+                 
+        $schedule->command('job:prcSys_Insert_External_Contact')
+                 ->withoutOverlapping()
+                 ->timezone('America/Argentina/Buenos_Aires')
+                 ->everyTenMinutes()
+                 ->between('02:00','02:10');
+        
       
         $schedule->command('job:prcSys_Insert_Logins')
                  ->withoutOverlapping()
@@ -118,7 +120,7 @@ class Kernel extends ConsoleKernel
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('03:10','03:30'); 
+                 ->between('03:10','03:30'); */
 
      }
 
