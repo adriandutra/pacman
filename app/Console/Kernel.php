@@ -95,7 +95,7 @@ class Kernel extends ConsoleKernel
                  ->everyTenMinutes()
                  ->between('02:30','02:50');
         
-        /*
+                 
         $schedule->command('job:prcSys_Insert_Contact_History')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
@@ -121,7 +121,7 @@ class Kernel extends ConsoleKernel
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('03:30','03:50'); */
+                 ->between('03:30','03:50'); 
 
      }
 
