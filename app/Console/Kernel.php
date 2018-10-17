@@ -100,7 +100,7 @@ class Kernel extends ConsoleKernel
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('02:50','03:10');
+                 ->between('02:55','03:15');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_Phone')
