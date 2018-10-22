@@ -80,48 +80,48 @@ class Kernel extends ConsoleKernel
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
                  ->between('01:40','02:00');
-        /*
+        
             
         $schedule->command('job:prcSys_Insert_Call_Logs')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('22:01','22:21');
+                 ->between('01:41','22:21');
         
                 
         $schedule->command('job:prcSys_Insert_Contact_Sale')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('22:30','22:50');
+                 ->between('02:30','02:50');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_History')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('22:55','23:15');
+                 ->between('02:55','03:15');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_Phone')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('23:10','23:40');
+                 ->between('03:10','03:40');
       
                  
         $schedule->command('job:prcSys_Insert_Contact_Address')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('23:40','00:00');
+                 ->between('03:40','04:00');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_MailAddress')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('23:40','00:00'); */
+                 ->between('03:40','04:00'); 
 
      }
 
