@@ -42,44 +42,44 @@ class Kernel extends ConsoleKernel
         $schedule->command('job:prcSys_Insert_CRM')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires') 
-                 ->dailyAt('20:00');
+                 ->dailyAt('00:00');
         
         $schedule->command('job:prcSys_Insert_Campaign')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('20:15','20:20');
+                 ->between('00:15','00:20');
         
         $schedule->command('job:prcSys_Insert_CRM_Users')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('20:21','20:30');
+                 ->between('00:21','00:30');
         
         $schedule->command('job:prcSys_Insert_Contacts')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('20:32','20:45');
+                 ->between('00:32','00:45');
         
         $schedule->command('job:prcSys_Insert_External_Database')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('20:45','21:10');
+                 ->between('00:45','01:10');
                  
         $schedule->command('job:prcSys_Insert_External_Contact')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('21:12','21:30');
+                 ->between('01:12','01:30');
         
         
         $schedule->command('job:prcSys_Insert_Logins')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('21:40','22:00');
+                 ->between('01:40','02:00');
         /*
             
         $schedule->command('job:prcSys_Insert_Call_Logs')
