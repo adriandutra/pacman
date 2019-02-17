@@ -12,15 +12,59 @@
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-desktop"></i>
-                <span>Contact Center</span>
+                <i class="fa fa-users"></i>
+                <span>Grupos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">               
-                <li><a href="{{url('contact/pad')}}"><i class="fa fa-circle-o"></i> Correcci&oacute;n de Direcciones</a></li>                
+              <ul class="treeview-menu">
+                <li><a href="{{url('groups/groups')}}"><i class="fa fa-circle-o"></i> Listado de Grupos</a></li>
+                <li><a href="{{url('groups/create')}}"><i class="fa fa-circle-o"></i> Agregar Grupo</a></li>
               </ul>
             </li>
-            
+                        <li class="treeview">
+              <a href="#">
+                <i class="fa fa-black-tie"></i>
+                <span>Compa&ntilde;&iacute;as</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('companies/companies')}}"><i class="fa fa-circle-o"></i> Listado de Compa&ntilde;&iacute;as</a></li>
+                <li><a href="{{url('companies/create')}}"><i class="fa fa-circle-o"></i> Agregar Compa&ntilde;&iacute;a</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calculator"></i>
+                <span>Nodos</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('nodes/nodes')}}"><i class="fa fa-circle-o"></i>Listado de Nodos</a></li>
+                <li><a href="{{url('nodes/create')}}"><i class="fa fa-circle-o"></i>Agregar Nodo</a></li> 
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Auxiliares</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('nodes/nodes')}}"><i class="fa fa-circle-o"></i>Listado de Nodos</a></li>
+                <li><a href="{{url('nodes/create')}}"><i class="fa fa-circle-o"></i>Agregar Nodo</a></li> 
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-building"></i>
+                <span>Cuentas</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('nodes/nodes')}}"><i class="fa fa-circle-o"></i>Listado de Nodos</a></li>
+                <li><a href="{{url('nodes/create')}}"><i class="fa fa-circle-o"></i>Agregar Nodo</a></li> 
+              </ul>
+            </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
@@ -47,7 +91,7 @@
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-users"></i>
+                <i class="fa fa-qq"></i>
                 <span>Cuentas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>

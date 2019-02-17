@@ -77,6 +77,17 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
         ],
+        
+        'comments' => [
+            'driver' => 'sqlsrv',
+            'host' => env('COMMENTS_HOST', 'sql2.cat\k14'),
+            'port' => env('COMMENTS_PORT', '1433'),
+            'database' => env('COMMENTS_DATABASE', 'forge'),
+            'username' => env('COMMENTS_USERNAME', 'forge'),
+            'password' => env('COMMENTS_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+        ],
 
     ],
 

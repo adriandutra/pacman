@@ -45,6 +45,10 @@ Route::group([
     Route::get('syslog/list', array('uses' => 'Backend\API\SyslogController@getList'))->name('syslog.list');
     Route::get('syslog/history', array('uses' => 'Backend\API\SyslogController@getHistory'))->name('syslog.history');
     Route::get('users/list', array('uses' => 'Backend\API\UserController@getList'))->name('users.list');
+    Route::get('accountant/groups/list', array('uses' => 'Backend\API\GroupController@getList'))->name('accountant.groups.list');
+    Route::get('accountant/companies/list', array('uses' => 'Backend\API\CompanyController@getList'))->name('accountant.companies.list');
+    Route::get('accountant/nodes/list', array('uses' => 'Backend\API\NodeController@getList'))->name('accountant.nodes.list');
+    
 });
 
 Route::group([
@@ -192,6 +196,62 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'groups'
+], function () {
+    Route::get('/', 'Backend\Statical\GroupController@getList');
+    Route::get('groups', 'Backend\Statical\GroupController@getList');
+    Route::get('create', 'Backend\Statical\GroupController@getCreate');
+    Route::get('edit/{ID}', 'Backend\Statical\GroupController@getEdit');
+    Route::post('store', 'Backend\Statical\GroupController@postStore');
+    Route::any('update', 'Backend\Statical\GroupController@postUpdate');
+    Route::post('destroy/{ID}', 'Backend\Statical\GroupController@postDestroy');
+});
+
+Route::group([
+    'prefix' => 'companies'
+], function () {
+    Route::get('companies', 'Backend\Statical\CompanyController@getList');
+    Route::get('create', 'Backend\Statical\CompanyController@getCreate');
+    Route::get('edit/{ID}', 'Backend\Statical\CompanyController@getEdit');
+    Route::post('store', 'Backend\Statical\CompanyController@postStore');
+    Route::any('update', 'Backend\Statical\CompanyController@postUpdate');
+    Route::post('destroy/{ID}', 'Backend\Statical\CompanyController@postDestroy');
+});
+
+Route::group([
+    'prefix' => 'nodes'
+], function () {
+    Route::get('nodes', 'Backend\Statical\NodeController@getList');
+    Route::get('create', 'Backend\Statical\NodeController@getCreate');
+    Route::get('edit/{ID}', 'Backend\Statical\NodeController@getEdit');
+    Route::post('store', 'Backend\Statical\NodeController@postStore');
+    Route::any('update', 'Backend\Statical\NodeController@postUpdate');
+    Route::post('destroy/{ID}', 'Backend\Statical\NodeController@postDestroy');
+});
+
+Route::group([
+    'prefix' => 'accountant'
+], function () {
+    Route::get('index', 'Backend\Statical\AccountantController@getList');
+    Route::get('create', 'Backend\Statical\AccountantController@getCreate');
+    Route::get('edit/{ID}', 'Backend\Statical\AccountantController@getEdit');
+    Route::post('store', 'Backend\Statical\AccountantController@postStore');
+    Route::any('update', 'Backend\Statical\AccountantController@postUpdate');
+    Route::post('destroy/{ID}', 'Backend\Statical\AccountantController@postDestroy');
+});
+
+Route::group([
+    'prefix' => 'assistant'
+], function () {
+    Route::get('index', 'Backend\Statical\AssistantController@getList');
+    Route::get('create', 'Backend\Statical\AssistantController@getCreate');
+    Route::get('edit/{ID}', 'Backend\Statical\AssistantController@getEdit');
+    Route::post('store', 'Backend\Statical\AssistantController@postStore');
+    Route::any('update', 'Backend\Statical\AssistantController@postUpdate');
+    Route::post('destroy/{ID}', 'Backend\Statical\AssistantController@postDestroy');
+});
+
+Route::group([
     'prefix' => 'report'
 ], function () {
     Route::get('/', 'Frontend\Statical\ReportController@getList');
@@ -204,8 +264,6 @@ Route::group([
 ], function () {
     Route::get('/unauthorized', 'Backend\Statical\UserController@getError');    
 });
-
-
 
 Auth::routes();
 

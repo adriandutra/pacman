@@ -88,6 +88,6 @@ class CampaignController extends Controller
         $campaign->Active = '0';
         $campaign->update();
         
-        return Redirect::to('servers/list');
+        return Redirect::to('campaigns/list');
     }
 }

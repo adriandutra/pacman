@@ -1,0 +1,32 @@
+    body.dragging, body.dragging * {
+	 cursor: move !important;
+	}
+									
+	.dragged {
+	  position: absolute;
+	  opacity: 0.5;
+	  z-index: 2000;
+	}
+	
+	ol.drag li.placeholder {
+	  position: relative;
+	  background: #333333 none repeat scroll 0 0;
+   }
+	
+	ol.drag li{
+	  background: #3a5162 none repeat scroll 0 0;
+   	  border: 1px solid black;
+      color: white;
+      display: block;
+      margin: 5px;
+      padding: 1px;
+	  font-size: 15px;
+    }
+	
+	ol.drag li.placeholder:before {
+	  position: absolute;
+	  /** Define arrowhead **/
+	}
+	.drag{
+	margin-left: -43px;
+	}
