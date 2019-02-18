@@ -77,12 +77,12 @@ class User extends Authenticatable
     {
          try
          {
-             $response = DB::table('users as u')
+             $response = DB::table(DB::raw('users as u'))
                              ->Select('u.id')
-                             ->join('role_user as ru', 'ru.user.id', '=', 'u.id')
+                             ->join('role_user as ru', 'ru.user_id', '=', 'u.id')
                              ->join('roles as r', 'r.id', '=', 'ru.role_id')
                              ->where('u.id', $this->id)
-                             ->where('r.id', '=', 3)
+                             ->where('r.id', 3)
                              ->first();
              
              if($response->id) return true;
