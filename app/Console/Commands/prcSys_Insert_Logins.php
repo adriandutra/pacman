@@ -45,15 +45,6 @@ class prcSys_Insert_Logins extends Command
      */
     public function handle()
     {
-        $flag = DB::table('DailyProcess')
-                    ->where('Name', 'prcSys_Insert_External_Contact')
-                    ->where('Sysout', 0)
-                    ->whereRaw('convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112)')
-                    ->whereRaw('(Select count(*) From DailyProcess Where Name = \'prcSys_Insert_Logins\' and convert(varchar, EndTime, 112) = convert(varchar, getdate(), 112) and Sysout = 0) = 0')
-                    ->first();
-        
-         
-        if ($flag->id) {
          
             $log = new Logger('prcSys_Insert_LoginsLogs');
             $log->pushHandler(new StreamHandler('storage/logs/prcSys_Insert_Logins.log', Logger::INFO));
@@ -74,7 +65,7 @@ class prcSys_Insert_Logins extends Command
             $log->addInfo("Cron prcSys_Insert_Logins Executed");
             $this->info('Cron prcSys_Insert_Logins execute correctly');
         
-        }
+
     }
     
 }
