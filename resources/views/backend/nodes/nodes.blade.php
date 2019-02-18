@@ -51,7 +51,7 @@ th, td { white-space: nowrap; }
 
 <script>
 
-var url = "{{url('api/v1/accountant/nodes') }}";
+var url = "{{url('api/v1/nodes') }}";
 var editor;
 
 function loadData() {

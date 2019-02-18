@@ -50,7 +50,7 @@ th, td { white-space: nowrap; }
 
 <script>
 
-var url = "{{url('api/v1/accountant/groups') }}";
+var url = "{{url('api/v1/groups') }}";
 var editor;
 
 function loadData() {

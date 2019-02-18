@@ -20,7 +20,7 @@ class Company extends Model
         return $this->hasMany(Node::class);
     }
     
-    public static function getServerActiveId()
+    public static function getCompanyActiveId()
     {
         $query = self::select('ID_Company')->Where('Active', 1)->get();
         

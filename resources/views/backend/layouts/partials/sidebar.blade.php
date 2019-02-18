@@ -9,7 +9,8 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header"></li>
-            
+           
+           @if (Auth::user()->isAdmin() or Auth::user()->isContable()) 
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i>
@@ -50,8 +51,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{url('nodes/nodes')}}"><i class="fa fa-circle-o"></i>Listado de Nodos</a></li>
-                <li><a href="{{url('nodes/create')}}"><i class="fa fa-circle-o"></i>Agregar Nodo</a></li> 
+                <li><a href="{{url('assistant/index')}}"><i class="fa fa-circle-o"></i>Listado de Auxiliares</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -61,10 +61,11 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{url('nodes/nodes')}}"><i class="fa fa-circle-o"></i>Listado de Nodos</a></li>
-                <li><a href="{{url('nodes/create')}}"><i class="fa fa-circle-o"></i>Agregar Nodo</a></li> 
+                <li><a href="{{url('accountant/index')}}"><i class="fa fa-circle-o"></i>Listado de Cuentas</a></li>
               </ul>
             </li>
+            @endif
+            @if(Auth::user()->isAdmin())
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
@@ -170,7 +171,7 @@
                 <small class="label pull-right bg-yellow">IT</small>
               </a>
             </li>
-                        
+            @endif            
           </ul>
         </section>
         <!-- /.sidebar -->

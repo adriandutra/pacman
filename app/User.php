@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function getUser()
+    { 
+      return $this->id;    
+    }
     
     public function roles()
     {
@@ -66,4 +72,41 @@ class User extends Authenticatable
         }
         return false;
     }
+    
+    public function isContable()
+    {
+         try
+         {
+             $response = DB::table('users as u')
+                             ->Select('u.id')
+                             ->join('role_user as ru', 'ru.user.id', '=', 'u.id')
+                             ->join('roles as r', 'r.id', '=', 'ru.role_id')
+                             ->where('u.id', $this->id)
+                             ->where('r.id', '=', 3)
+                             ->first();
+             
+             if($response->id) return true;
+         }
+         catch(\Exception $e) { return false; }
+    }
+
+    public function isAdmin()
+    {
+        try
+        {
+            
+            $response = DB::table(DB::raw('users as u'))
+                          ->Select('u.id')
+                          ->join('role_user as ru', 'ru.user_id', '=', 'u.id')
+                          ->join('roles as r', 'r.id', '=', 'ru.role_id')
+                          ->where('u.id', '=', $this->id)
+                          ->where('r.id', 1)
+                          ->first();
+                           
+           
+            if($response->id) return true;
+        }
+        catch(\Exception $e) { return false; }
+    }
+    
 }

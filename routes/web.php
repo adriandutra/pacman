@@ -45,10 +45,11 @@ Route::group([
     Route::get('syslog/list', array('uses' => 'Backend\API\SyslogController@getList'))->name('syslog.list');
     Route::get('syslog/history', array('uses' => 'Backend\API\SyslogController@getHistory'))->name('syslog.history');
     Route::get('users/list', array('uses' => 'Backend\API\UserController@getList'))->name('users.list');
-    Route::get('accountant/groups/list', array('uses' => 'Backend\API\GroupController@getList'))->name('accountant.groups.list');
-    Route::get('accountant/companies/list', array('uses' => 'Backend\API\CompanyController@getList'))->name('accountant.companies.list');
-    Route::get('accountant/nodes/list', array('uses' => 'Backend\API\NodeController@getList'))->name('accountant.nodes.list');
-    
+    Route::get('groups/list', array('uses' => 'Backend\API\GroupController@getList'))->name('groups.list');
+    Route::get('companies/list', array('uses' => 'Backend\API\CompanyController@getList'))->name('companies.list');
+    Route::get('nodes/list', array('uses' => 'Backend\API\NodeController@getList'))->name('nodes.list');
+    Route::get('assistant/list', array('uses' => 'Backend\API\AssistantController@getList'))->name('assistant.list');
+    Route::get('accountant/list', array('uses' => 'Backend\API\AccountantController@getList'))->name('accountant.list');
 });
 
 Route::group([

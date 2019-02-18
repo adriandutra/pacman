@@ -18,7 +18,7 @@ class CompanyController extends Controller
     
     public function getList()
     {
-        $companies = Company::getServerActiveId();
+        $companies = Company::getCompanyActiveId();
         return view('backend.companies.companies', ['companies' => $companies]);
     }
     
