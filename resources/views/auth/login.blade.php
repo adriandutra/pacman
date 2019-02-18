@@ -55,7 +55,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Ingresar
                                 </button>
-
+                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Olvidaste tu password?
                                 </a>

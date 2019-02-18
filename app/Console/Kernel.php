@@ -42,87 +42,86 @@ class Kernel extends ConsoleKernel
         $schedule->command('job:prcSys_Insert_CRM')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires') 
-                 ->dailyAt('20:00');
+                 ->dailyAt('19:30');
         
         $schedule->command('job:prcSys_Insert_Campaign')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('20:15','20:20');
+                 ->between('19:40','20:00');
         
         $schedule->command('job:prcSys_Insert_CRM_Users')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('20:21','20:30');
+                 ->between('20:01','20:20');
         
         $schedule->command('job:prcSys_Insert_Contacts')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('20:32','20:45');
+                 ->between('20:21','20:35');
         
         $schedule->command('job:prcSys_Insert_External_Database')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('20:45','21:10');
+                 ->between('20:36','21:45');
                  
         $schedule->command('job:prcSys_Insert_External_Contact')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('21:12','21:30');
+                 ->between('21:45','22:00');
         
         
         $schedule->command('job:prcSys_Insert_Logins')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyMinute()
-                 ->between('21:40','22:00');
+                 ->between('20:30','21:00');
         
             
         $schedule->command('job:prcSys_Insert_Call_Logs')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('21:41','22:21');
+                 ->between('21:00','21:40');
         
-        /*        
         $schedule->command('job:prcSys_Insert_Contact_Sale')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('22:30','22:50');
+                 ->between('21:30','22:00');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_History')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('22:55','23:15');
+                 ->between('22:00','22:40');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_Phone')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('23:10','23:40');
+                 ->between('22:20','23:00');
       
                  
         $schedule->command('job:prcSys_Insert_Contact_Address')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('23:40','00:00');
+                 ->between('23:10','23:59');
         
                  
         $schedule->command('job:prcSys_Insert_Contact_MailAddress')
                  ->withoutOverlapping()
                  ->timezone('America/Argentina/Buenos_Aires')
                  ->everyTenMinutes()
-                 ->between('23:40','00:00'); 
-          */
+                 ->between('23:30','23:59'); 
+          
      }
 
 } 
