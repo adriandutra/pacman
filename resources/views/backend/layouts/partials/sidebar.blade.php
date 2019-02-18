@@ -10,7 +10,7 @@
           <ul class="sidebar-menu">
             <li class="header"></li>
            
-           @if (Auth::user()->isAdmin() or Auth::user()->isContable()) 
+           @if (Auth::user()->isAdmin() || Auth::user()->isContable()) 
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i>
