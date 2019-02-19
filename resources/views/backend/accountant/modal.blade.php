@@ -1,8 +1,8 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$node->ID_NodosContables}}">
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$accountant->ID}}">
   
   
   
-  {!! Form::open(array('action' => array('Backend\Statical\NodeController@postDestroy', $node->ID_NodosContables))) !!}
+  {!! Form::open(array('action' => array('Backend\Statical\AccountantController@postDestroy', $accountant->ID))) !!}
    
      <div class="modal-dialog">
         <div class="modal-content">

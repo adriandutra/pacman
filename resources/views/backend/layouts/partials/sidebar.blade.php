@@ -63,6 +63,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{url('accountant/index')}}"><i class="fa fa-circle-o"></i>Listado de Cuentas</a></li>
+                <li><a href="{{url('accountant/list')}}"><i class="fa fa-circle-o"></i>Listado de Paridades</a></li>
               </ul>
             </li>
             @endif

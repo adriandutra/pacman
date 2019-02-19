@@ -1,11 +1,11 @@
 @extends('backend.layouts.app')
 
 @section('htmlheader_title')
-	Paridad Nodos Contables
+	Paridad Cuentas
 
 @endsection
 @section('contentheader_title')
-     Editar Paridad Nodos Contables
+     Crear Paridad Cuenta Auxiliar
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@
         </div>
         @endif
         
-        {!!Form::open(array('url'=> 'accountant/update', 'method' => 'POST', 'autocomplete' => 'off'))!!}
+        {!!Form::open(array('url'=> 'accountant/store', 'method' => 'POST', 'autocomplete' => 'off'))!!}
         {{Form::token()}}
         
         <div class="form-group">
@@ -33,26 +33,22 @@
         </div>
         
         <div class="form-group">
-        	<label for="nombre">C&oacute;digo Cuenta</label>
+        	<label for="nombre">C&oacute;digo Auxiliar</label>
         	<input type="text" name="codigo" disabled class="form-control" value="{{$datos->code}}">
         </div>
         
          <div class="form-group">
-        	<label for="nombre">Cuenta</label>
-        	<input type="text" name="cuenta" disabled class="form-control" value="{{$datos->cuenta}}">
+        	<label for="nombre">Auxiliar</label>
+        	<input type="text" name="auxiliar" disabled class="form-control" value="{{$datos->cuenta}}">
         </div>
         
         <div class="form-group">
-        	<label for="nombre">Nodo Contables</label><br/>
+        	<label for="nombre">Cuenta</label><br/>
         	<select class="form-control" name="ID_NodosContables" id="ID_NodosContables">
-        	   <option value="">[Seleccione Nodo]</option>
+        	   <option value="">[Seleccione Cuenta]</option>
         	   @if (isset($nodes))
         	       @foreach ($nodes as $node)
-        	          @if($node->ID_NodosContables == $datos->ID_NodosContables )
-        	            <option value="{{$node->ID_NodosContables}}" SELECTED>{{$node->Descripcion}}</option>
-        	          @else  
         	            <option value="{{$node->ID_NodosContables}}">{{$node->Descripcion}}</option>
-        	          @endif
         	       @endforeach
         	   @endif
         	</select>
@@ -65,7 +61,7 @@
         
         <div class="form-group" style="float: right;">
             <button class="btn btn-primary" type="submit">Guardar</button>
-            <a href="{{url('accountant/list')}}" ><button class="btn btn-danger" type="button">Cancelar</button></a>
+            <a href="{{url('assistant/index')}}" ><button class="btn btn-danger" type="button">Cancelar</button></a>
         </div>
         
         {!!Form::close()!!}

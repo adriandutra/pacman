@@ -94,7 +94,7 @@ class AssistantController extends Controller
     {
         
         $parity =  Assistant::where('ID_Auxiliar', $request->get('ID_Auxiliar'))
-                            ->where('ID_Company', $request->get('ID_Auxiliar'))
+                            ->where('ID_Company', $request->get('ID_Company'))
                             ->update(['ID_GAux' => $request->get('ID_GAux')]);
         
         
