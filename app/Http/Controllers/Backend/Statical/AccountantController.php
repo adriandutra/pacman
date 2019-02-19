@@ -44,7 +44,12 @@ class AccountantController extends Controller
                        ->Where('a.ID_CUENTA', $id)
                        ->first();
                                          
-        $nodes = Node::get();
+        $nodes = DB::table('PacManContable.dbo.NodosContables as a')
+                     ->Select(DB::raw('a.ID_NodosContables as ID_NodosContables
+                                      , a.Descripcion as Descripcion'))
+                     ->join('PacmanContable.dbo.Company as c', 'c.ID_Company', '=', 'a.ID_Company')
+                     ->where('c.Active', 1)
+                     ->get();
                                          
         return view('backend.accountant.create', ['datos' => $datos, 'nodes' => $nodes]);
     }
@@ -70,7 +75,13 @@ class AccountantController extends Controller
                       ->Where('c.ID_Company', $id_company)
                       ->first();
                                          
-         $nodes = Node::get();
+         $nodes = DB::table('PacManContable.dbo.NodosContables as a')
+                      ->Select(DB::raw('a.ID_NodosContables as ID_NodosContables
+                                      , a.Descripcion as Descripcion'))
+                      ->join('PacmanContable.dbo.Company as c', 'c.ID_Company', '=', 'a.ID_Company')
+                      ->where('c.Active', 1)
+                      ->get();
+         
          return view('backend.accountant.edit', ['datos' => $datos, 'nodes' => $nodes]);
     }
     

@@ -5,7 +5,7 @@
 
 @endsection
 @section('contentheader_title')
-     Crear Paridad Cuenta Auxiliar
+     Crear Paridad Cuenta 
 @endsection
 
 @section('content')
@@ -33,19 +33,19 @@
         </div>
         
         <div class="form-group">
-        	<label for="nombre">C&oacute;digo Auxiliar</label>
+        	<label for="nombre">C&oacute;digo Cuenta</label>
         	<input type="text" name="codigo" disabled class="form-control" value="{{$datos->code}}">
         </div>
         
          <div class="form-group">
-        	<label for="nombre">Auxiliar</label>
-        	<input type="text" name="auxiliar" disabled class="form-control" value="{{$datos->cuenta}}">
+        	<label for="nombre">Cuenta</label>
+        	<input type="text" name="cuenta" disabled class="form-control" value="{{$datos->cuenta}}">
         </div>
         
         <div class="form-group">
-        	<label for="nombre">Cuenta</label><br/>
+        	<label for="nombre">Nodos Contables</label><br/>
         	<select class="form-control" name="ID_NodosContables" id="ID_NodosContables">
-        	   <option value="">[Seleccione Cuenta]</option>
+        	   <option value="">[Seleccione Nodo]</option>
         	   @if (isset($nodes))
         	       @foreach ($nodes as $node)
         	            <option value="{{$node->ID_NodosContables}}">{{$node->Descripcion}}</option>
