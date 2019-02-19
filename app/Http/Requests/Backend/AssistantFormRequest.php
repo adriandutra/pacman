@@ -13,7 +13,7 @@ class AssistantFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class AssistantFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'ID_GAux'   => 'required'
         ];
     }
 }

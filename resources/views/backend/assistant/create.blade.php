@@ -5,7 +5,7 @@
 
 @endsection
 @section('contentheader_title')
-     Editar Paridad Grupo Auxiliar
+     Crear Paridad Grupo Auxiliar
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@
         </div>
         @endif
         
-        {!!Form::open(array('url'=> 'assistant/update', 'method' => 'POST', 'autocomplete' => 'off'))!!}
+        {!!Form::open(array('url'=> 'assistant/store', 'method' => 'POST', 'autocomplete' => 'off'))!!}
         {{Form::token()}}
         
         <div class="form-group">
@@ -48,11 +48,7 @@
         	   <option value="">[Seleccione Grupo]</option>
         	   @if (isset($groups))
         	       @foreach ($groups as $group)
-        	          @if($group->ID_GAux == $datos->ID_GAux )
-        	            <option value="{{$group->ID_GAux}}" SELECTED>{{$group->Descripcion}}</option>
-        	          @else  
         	            <option value="{{$group->ID_GAux}}">{{$group->Descripcion}}</option>
-        	          @endif
         	       @endforeach
         	   @endif
         	</select>

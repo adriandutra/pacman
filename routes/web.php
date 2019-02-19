@@ -49,6 +49,7 @@ Route::group([
     Route::get('companies/list', array('uses' => 'Backend\API\CompanyController@getList'))->name('companies.list');
     Route::get('nodes/list', array('uses' => 'Backend\API\NodeController@getList'))->name('nodes.list');
     Route::get('assistant/list', array('uses' => 'Backend\API\AssistantController@getList'))->name('assistant.list');
+    Route::get('assistant/parity/list', array('uses' => 'Backend\API\AssistantController@getListParity'))->name('assistant.parity.list');
     Route::get('accountant/list', array('uses' => 'Backend\API\AccountantController@getList'))->name('accountant.list');
 });
 
@@ -245,7 +246,8 @@ Route::group([
     'prefix' => 'assistant'
 ], function () {
     Route::get('index', 'Backend\Statical\AssistantController@getList');
-    Route::get('create', 'Backend\Statical\AssistantController@getCreate');
+    Route::get('list', 'Backend\Statical\AssistantController@getListParity');
+    Route::get('create/{ID}', 'Backend\Statical\AssistantController@getCreate');
     Route::get('edit/{ID}', 'Backend\Statical\AssistantController@getEdit');
     Route::post('store', 'Backend\Statical\AssistantController@postStore');
     Route::any('update', 'Backend\Statical\AssistantController@postUpdate');

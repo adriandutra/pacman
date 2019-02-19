@@ -52,6 +52,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{url('assistant/index')}}"><i class="fa fa-circle-o"></i>Listado de Auxiliares</a></li>
+                <li><a href="{{url('assistant/list')}}"><i class="fa fa-circle-o"></i>Listado de Paridades</a></li>
               </ul>
             </li>
             <li class="treeview">
